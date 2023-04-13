@@ -8,7 +8,8 @@ import com.w3schools.pages.LoginPage;
 import com.w3schools.pages.ProfilePage;
 import com.w3schools.utils.BaseTest;
 
-public class ProfileUpdating extends LoginTest{
+public class ProfileTest extends LoginTest{
+	
 
 	@Test
 	public void prifileUpdating() {

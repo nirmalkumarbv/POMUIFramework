@@ -6,13 +6,19 @@ import org.testng.annotations.Test;
 import com.w3schools.pages.LoginPage;
 import com.w3schools.pages.ProfilePage;
 import com.w3schools.utils.BaseTest;
+import com.w3schools.utils.Reports;
 
 public class LoginTest extends BaseTest {
+	
+	Reports report = new Reports();
 	
 	@Test
 	public void loginW3Schools() {
 		
 		try {
+			
+			report.setTCDesc("Validating Login functionality");
+			
 			launchBrowser("https://profile.w3schools.com/log-in");
 			
 			LoginPage loginpage = PageFactory.initElements(driver, LoginPage.class);
