@@ -43,9 +43,12 @@ public class BaseTest {
 			driver.manage().window().maximize();
 			driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 			driver.get(url);
+			Reports.reportStep("PASS", "Browser launched Successfully");
 		} catch (Exception ex) {
 			ex.printStackTrace();
 			System.out.println("Problem while launching Browser");
+			Reports.reportStep("FAIL", "Problem while launching the Browser launched");
+
 		}
 
 	}
@@ -72,7 +75,10 @@ public class BaseTest {
 		try {
 			ele.clear();
 			ele.sendKeys(text);
+			Reports.reportStep("PASS", "The "+text+ " was entered successfully into the "+ele);
+
 		} catch (Exception ex) {
+			Reports.reportStep("FAIL", "The "+text+ " wasn't entered successfully into the "+ele);
 			ex.printStackTrace();
 		}
 	}
@@ -80,7 +86,11 @@ public class BaseTest {
 	public void clickAction(WebElement ele) {
 		try {
 			ele.click();
+			Reports.reportStep("PASS", "The "+ele+" was clicked successfully");
+
 		} catch (Exception ex) {
+			Reports.reportStep("FAIL", "The "+ele+" was not clicked successfully");
+
 			ex.printStackTrace();
 		}
 	}
@@ -90,7 +100,10 @@ public class BaseTest {
 			WebDriverWait wait = new WebDriverWait(driver, 30);
 			wait.until(ExpectedConditions.visibilityOf(ele));
 			wait.until(ExpectedConditions.elementToBeClickable(ele));
+			Reports.reportStep("PASS", "The "+ele+" waited succesfully ");
+
 		} catch (Exception ex) {
+			Reports.reportStep("FAIL", "Problem in waiting for the "+ele);
 			ex.printStackTrace();
 		}
 
@@ -101,7 +114,10 @@ public class BaseTest {
 			WebDriverWait wait = new WebDriverWait(driver, timeOut);
 			wait.until(ExpectedConditions.visibilityOf(ele));
 			wait.until(ExpectedConditions.elementToBeClickable(ele));
+			Reports.reportStep("PASS", "The "+ele+" waited succesfully with "+timeOut);
+
 		} catch (Exception ex) {
+			Reports.reportStep("FAIL", "Problem in waiting for the "+ele +" with "+timeOut);
 			ex.printStackTrace();
 		}
 
@@ -321,6 +337,7 @@ public class BaseTest {
 		try {
 			JavascriptExecutor js = (JavascriptExecutor) driver;
 			js.executeScript("arguments[0].scrollIntoView(true);", ele);
+			Reports.reportStep("PASS", "The "+ele+" was clicked successfully using javascript");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
